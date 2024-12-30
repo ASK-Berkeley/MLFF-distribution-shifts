@@ -1,6 +1,8 @@
 # Understanding and Mitigating Distribution Shifts for Machine Learning Force Fields
 
-This repository provides implementations for test-time training for machine learning force fields and for test-time radius refinement. This repository is largely based off of [this repo](https://github.com/kyonofx/MDsim/tree/main).
+![Alt Text](assets/distribution_shifts.png)
+
+This repository provides implementations for test-time training and test-time radius refinement for machine learning force fields (MLFFs). This repository is largely based off of [this repo](https://github.com/kyonofx/MDsim/tree/main). We also release our specific data splits for our MLFF distribution shifts benchmarks to help evaluate the next generation of MLFFs.
 
 [[paper]](https://openreview.net/forum?id=Xk9Q0CrJQc)
 [[website]](https://tkreiman.github.io/projects/mlff_distribution_shifts/)
@@ -18,7 +20,7 @@ pip install -e ./
 ```
 If there are issues with the installation, it can be  helpful to first individually install [pytorch](https://pytorch.org/get-started/locally/) and [torch geometric](https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html) before installing the rest of the dependencies.
 
-## Data Processing
+## Benchmarks and Data Processing
 
 ```.xyz``` files containing the benchmarks can be found [here](https://drive.google.com/file/d/1u15bRsrOrERb4WSMfNP-T4jsAiFFNQeb/view?usp=sharing). This contains the SpiceV2 distribution shift benchmark, the data for the force norm distribution shifts on MD22, and the data used to train the models for the simulation benchmark on MD17.
 
