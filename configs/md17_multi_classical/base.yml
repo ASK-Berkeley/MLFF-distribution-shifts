@@ -1,0 +1,31 @@
+trainer: trainer
+
+dataset:
+  src: <PATH_TO_DATA>
+  name: md17-multi-classical
+  size: all
+  molecule: 
+    - benzene
+    - uracil
+    - aspirin
+    
+  normalize_labels: False
+
+logger: 
+  name: wandb
+  project: mdbench
+
+task: 
+  dataset: multi
+  description: "Regressing to energies and forces"
+  type: regression
+  metric: mae
+  labels:
+    - potential energy
+  grad_input: atomic forces
+  train_on_free_atoms: True
+  eval_on_free_atoms: True
+
+optim:
+  early_stopping_time: 604800
+  early_stopping_lr: 0.000001

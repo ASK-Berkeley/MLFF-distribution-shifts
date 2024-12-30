@@ -1,0 +1,49 @@
+trainer: ttt_trainer_spice
+
+
+dataset:
+  src: <PATH_TO_DATA>
+  name: spice
+  size: all
+  molecule: 
+    - all_spice
+      
+  return_formation_energy: True
+  negate_force: False
+  normalize_labels: False
+
+
+logger: 
+  name: wandb
+  project: mdbench
+
+
+finetuning: True
+
+ttt_val_dataset_path: <PATH_TO_DATA>
+
+ttt_params:
+  ttt_lr: 0.00001
+  ttt_steps: 500
+  ttt_batch_size: 32
+  ttt_opt: sgd
+  ttt_keep_momentum: False  # Keep momentum between train samples?
+  ttt_freeze_amount: "min"
+  ttt_weight_decay: 0.001
+  ttt_momentum: 0.9
+  skip_ttt: False
+
+task: 
+  dataset: multi
+  description: "Regressing to energies and forces"
+  type: regression
+  metric: mae
+  labels:
+    - potential energy
+  grad_input: atomic forces
+  train_on_free_atoms: True
+  eval_on_free_atoms: True
+
+optim:
+  early_stopping_time: 604800
+  early_stopping_lr: 0.000001

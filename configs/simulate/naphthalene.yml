@@ -1,0 +1,18 @@
+model_dir: MODELPATH
+dataset_src: <PATH_TO_DATA>
+dp_data_path: <PATH_TO_DATA>
+nequip_data_config: configs/simulate/nequip_data_cfg/naphthalene.yml
+identifier: naphthalene 
+sim_type: ocp
+seed: 123
+save_freq: 10
+steps: 1000000
+max_test_points: 10000
+
+sim_molecule: naphthalene
+
+kcal: False
+T_init: 500.
+
+integrator: Langevin
+integrator_config: {"timestep": 0.5, "temperature_K": 500., "friction": 0.01}
