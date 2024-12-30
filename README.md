@@ -28,7 +28,7 @@ Once the xyz files are downloaded, they can be processed into lmdb format with `
 ```
 python --db_path data/md17_ood_sim/lmdb --xyz_path data md17_ood_sim/md17_aspirin_benzene_uracil_train.xyz --split_name train
 ``` 
-The prior can also be added to the dataset by passing in ```--calc-classical```. By default, sGDML is the prior used. This requires having an sGDML prior trained. For md17, these can be obtained [here](http://sgdml.org/). The code can be easily modified to use a different ase calculator for new prior. 
+The prior can also be added to the dataset by passing in ```--calc-classical```. By default, the prior is sGDML. This requires having an sGDML prior trained. For md17, these can be obtained [here](http://sgdml.org/). The code can be easily modified to use a different ase calculator for a new prior. 
 
 **Remember to modify the data paths in the configs folder appropriately.**
 
@@ -65,9 +65,9 @@ For instance to run TTT on md17:
 ```
 python main.py --mode validate --config-yml configs/md17_multi/gemnet-dT_ttt.yml --debug --checkpoint MODELPATH/<main_task_run_name>/checkpoints/best_checkpoint.pt --ttt_params.freeze_head_checkpoint=MODELPATH/<prior_task_run_name>/checkpoints/best_checkpoint.pt
 ```
-Note that this requires having 2 checkpoints. The first checkpoint (`<prior_task_run_name>`) was trained on the prior targets. The second checkpoint (`<main_task_run_name>`) was fine-tuned from the prior task model on the main task (while keeping the representation forzen). See the paper for more details. Moreover, this requires passing in 2 dataset paths in the config. The dataset called `ttt_val_dataset_path` has the reference labels and is used to evaluate the model. The main dataset has both the reference and prior labels, and the prior labels are used to improve the representations of the model.
+Note that this requires having 2 checkpoints. The first checkpoint (`<prior_task_run_name>`) was trained on the prior targets. The second checkpoint (`<main_task_run_name>`) was fine-tuned from the prior task model on the main task (while keeping the representation frozen).Moreover, this requires passing in 2 dataset paths in the config. The dataset called `ttt_val_dataset_path` has the reference labels and is used to evaluate the model. The main dataset has both the reference and prior labels, and the prior labels are used to improve the representations of the model. See the paper for more details.
 
 ## Test-Time Radius Refinement
 
-An example of test-time radius refinement with MACE-OFF can be found in `radius_refinement_maceoff.py`. Note that the parameters for the heuristic to measure distances between eigenvalue distributions should likely be adjusted for different datasets.
+An example of test-time radius refinement with MACE-OFF can be found in `radius_refinement_maceoff.py`. Note that the parameters for the heuristic to measure distances between eigenvalue distributions will likely have to be adjusted for different training datasets.
 
