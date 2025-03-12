@@ -37,7 +37,7 @@ If there are issues with the installation, it can be  helpful to first individua
 
 Once the xyz files are downloaded, they can be processed into lmdb format with ```preprocessing/xyz_to_lmdb.py```. For instance, 
 ```
-python --db_path data/md17_ood_sim/lmdb --xyz_path data md17_ood_sim/md17_aspirin_benzene_uracil_train.xyz --split_name train
+python preprocessing/xyz_to_lmdb.py --db_path data/md17_ood_sim/lmdb --xyz_path data md17_ood_sim/md17_aspirin_benzene_uracil_train.xyz --split_name train
 ``` 
 The prior can also be added to the dataset by passing in ```--calc-classical```. By default, the prior is sGDML. This requires having an sGDML prior trained. For md17, these can be obtained [here](http://sgdml.org/). The code can be easily modified to use a different ase calculator for a new prior. 
 
