@@ -41,22 +41,29 @@ def get_eigval_distribution(data, radius=5.0):
     return eigvals.astype(np.float32)
 
 # Distance heuristic between eigenvalue distributions
-def get_percent_within_pt1(data, r=5.0, center=1.0, width=0.1):
+def distance_fn(data, average_training_spectra, r=5.0):
     ev = get_eigval_distribution(data, radius=r)
-    return np.sum(np.abs(ev - center) < width)/len(ev)
+
+    n = len(average_training_spectra)
+
+    ev = np.sort(ev)
+    ev = np.pad(ev, (0, n - len(ev)), mode='constant', constant_values=0)
+
+    return np.linalg.norm(ev - average_training_spectra) ** 2
+    
 
 
 
-def get_rad_err(calc, radii, data, opt_eig_percent=0.55, eig_center=1.0, eig_width=0.1):
+def get_rad_err(calc, radii, data, average_training_spectra):
 
         # Find the best radius for the given system    
         # (i.e. the radius that yields a connectivity that best matches the training data)
         connectivities = []
         for rad in radii:    
             rad = float(rad)
-            connectivities.append(get_percent_within_pt1(data, r=rad, center=eig_center, width=eig_width))
+            connectivities.append(get_eigval_distribution(data, average_training_spectra=average_training_spectra, r=rad,))
 
-        best_r = radii[np.argmin(np.abs(connectivities - opt_eig_percent))]
+        best_r = radii[np.argmin(connectivities)]
 
         # Perform inference with the optimal radius cutoff
         calc.r_max = best_r 
@@ -73,6 +80,8 @@ def main(args):
     # Load calculator
     calc = mace_off(model=args.model, device=args.device, default_dtype='float32')
 
+    average_training_spectra = np.load(args.average_training_spectra_path)
+
     # Load dataset
     cfg = {'src' : args.data_path}
     dataset = LmdbDataset(cfg)
@@ -82,7 +91,7 @@ def main(args):
     errors = []
     for i in tqdm(range(args.n_test)):
         data = dataset[i]
-        errors.append(get_rad_err(calc, radii, data, opt_eig_percent=args.opt_eig_percent, eig_center=args.eig_center, eig_width=args.eig_width))
+        errors.append(get_rad_err(calc, radii, data, average_training_spectra))
     
     print(f'Mean error: {np.mean(errors)}')
     print(f'Std error: {np.std(errors)}')
@@ -97,11 +106,8 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, default='medium')
     parser.add_argument('--device', type=str, default='cuda')
     parser.add_argument('--n_test', type=int, default=1000)
-    # Heuristic used for radius selection to measure distance between eigenvalue distributions
-    # (needs to be refined for different datasets)
-    parser.add_argument('--opt_eig_percent', type=float, default=0.55) 
-    parser.add_argument('--eig_center', type=float, default=1.0)
-    parser.add_argument('--eig_width', type=float, default=0.1)
-
+    # Path to average training spectra for finding the best radius (should be sorted)
+    parser.add_argument('--average_training_spectra_path', type=str, required=True)
+   
     args = parser.parse_args()
     main(args)

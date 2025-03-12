@@ -4,11 +4,22 @@
 
 This repository provides implementations for test-time training and test-time radius refinement for machine learning force fields (MLFFs). This repository is largely based off of [this repo](https://github.com/kyonofx/MDsim/tree/main). We also release our specific data splits for our MLFF distribution shifts benchmarks to help evaluate the next generation of MLFFs.
 
-[[paper]](https://openreview.net/forum?id=Xk9Q0CrJQc)
+[[paper]](https://arxiv.org/abs/2503.08674)
 [[website]](https://tkreiman.github.io/projects/mlff_distribution_shifts/)
 
 If you find this work useful, please consider citing:
-```TODO```
+
+```
+@misc{kreiman2025understandingmitigatingdistributionshifts,
+      title={Understanding and Mitigating Distribution Shifts For Machine Learning Force Fields}, 
+      author={Tobias Kreiman and Aditi S. Krishnapriyan},
+      year={2025},
+      eprint={2503.08674},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.08674}, 
+}
+```
 
 ## Installation
 
@@ -69,5 +80,5 @@ Note that this requires having 2 checkpoints. The first checkpoint (`<prior_task
 
 ## Test-Time Radius Refinement
 
-An example of test-time radius refinement with MACE-OFF can be found in `radius_refinement_maceoff.py`. Note that the parameters for the heuristic to measure distances between eigenvalue distributions will likely have to be adjusted for different training datasets.
+An example of test-time radius refinement with MACE-OFF can be found in `radius_refinement_maceoff.py`.
 
