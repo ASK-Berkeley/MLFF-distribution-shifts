@@ -33,7 +33,7 @@ If there are issues with the installation, it can be  helpful to first individua
 
 ## Benchmarks and Data Processing
 
-```.xyz``` files containing the benchmarks can be found [here](https://drive.google.com/file/d/1u15bRsrOrERb4WSMfNP-T4jsAiFFNQeb/view?usp=sharing). This contains the SpiceV2 distribution shift benchmark, the data for the force norm distribution shifts on MD22, and the data used to train the models for the simulation benchmark on MD17.
+```.xyz``` files containing the benchmarks can be found [here](https://drive.google.com/file/d/1u15bRsrOrERb4WSMfNP-T4jsAiFFNQeb/view?usp=sharing) or on [huggingface](https://huggingface.co/datasets/tkreiman/mlff_distribution_shifts/tree/main). This contains the SpiceV2 distribution shift benchmark, the data for the force norm distribution shifts on MD22, and the data used to train the models for the simulation benchmark on MD17.
 
 Once the xyz files are downloaded, they can be processed into lmdb format with ```preprocessing/xyz_to_lmdb.py```. For instance, 
 ```
