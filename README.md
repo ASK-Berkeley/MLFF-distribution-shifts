@@ -1,4 +1,6 @@
 # Understanding and Mitigating Distribution Shifts for Machine Learning Force Fields
+[![DOI](https://zenodo.org/badge/909891921.svg)](https://doi.org/10.5281/zenodo.17401634)
+
 
 ![Alt Text](assets/distribution_shifts.png)
 
