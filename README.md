@@ -1,4 +1,4 @@
-# Understanding and Mitigating Distribution Shifts for Machine Learning Force Fields
+# [Digital Discovery 2026] Understanding and mitigating distribution shifts for universal machine learning interatomic potentials
 [![DOI](https://zenodo.org/badge/909891921.svg)](https://doi.org/10.5281/zenodo.17401634)
 
 
