@@ -6,20 +6,24 @@
 
 This repository provides implementations for test-time training and test-time radius refinement for machine learning force fields (MLFFs). This repository is largely based off of [this repo](https://github.com/kyonofx/MDsim/tree/main). We also release our specific data splits for our MLFF distribution shifts benchmarks to help evaluate the next generation of MLFFs.
 
-[[paper]](https://arxiv.org/abs/2503.08674)
+[[paper]](https://pubs.rsc.org/en/Content/ArticleLanding/2026/DD/D5DD00260E)
 [[website]](https://tkreiman.github.io/projects/mlff_distribution_shifts/)
 
 If you find this work useful, please consider citing:
 
 ```
-@misc{kreiman2025understandingmitigatingdistributionshifts,
-      title={Understanding and Mitigating Distribution Shifts For Machine Learning Force Fields}, 
-      author={Tobias Kreiman and Aditi S. Krishnapriyan},
-      year={2025},
-      eprint={2503.08674},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2503.08674}, 
+@article{Kreiman2026,
+  title = {Understanding and mitigating distribution shifts for universal machine learning interatomic potentials},
+  volume = {5},
+  ISSN = {2635-098X},
+  url = {http://dx.doi.org/10.1039/D5DD00260E},
+  DOI = {10.1039/d5dd00260e},
+  number = {1},
+  journal = {Digital Discovery},
+  publisher = {Royal Society of Chemistry (RSC)},
+  author = {Kreiman,  Tobias and Krishnapriyan,  Aditi S.},
+  year = {2026},
+  pages = {415–439}
 }
 ```
 
